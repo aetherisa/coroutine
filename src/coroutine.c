@@ -6,10 +6,8 @@
 #include <sys/mman.h>
 #include "coroutine.h"
 
-#define MMAP_SIZE ((STACK_SIZE) << 1)
+#define MMAP_SIZE ((CO_STACK_SIZE) << 1)
 #define DEAD_FLAG (0x1)
-#define ALIGN_UP(x, a) \
-	(((uintptr_t)(x) + (uintptr_t)(a) - 1) & ~((uintptr_t)(a) - 1))
 
 static uintptr_t caller;
 
@@ -20,7 +18,7 @@ extern void ctx_switch(uintptr_t *, uintptr_t);
 
 static void co_exit(uintptr_t rax)
 {
-	uintptr_t top = co_top(STACK_SIZE);
+	uintptr_t top = co_top(CO_STACK_SIZE);
 
 	*((uintptr_t *)top - 1) = DEAD_FLAG;
 	*((uintptr_t *)top - 2) = rax;
@@ -33,7 +31,7 @@ static void co_exit(uintptr_t rax)
 uintptr_t co_new(void *(*func)(void *), void *arg)
 {
 	size_t page_size = sysconf(_SC_PAGESIZE);
-	size_t stack_size = STACK_SIZE;
+	size_t stack_size = CO_STACK_SIZE;
 
 	assert(stack_size > page_size &&
 			"STACK_CAPACITY must be larger than _SC_PAGESIZE");
@@ -78,7 +76,7 @@ void co_resume(uintptr_t co)
 
 void co_yield(void)
 {
-	uintptr_t top = co_top(STACK_SIZE);
+	uintptr_t top = co_top(CO_STACK_SIZE);
 	ctx_switch((uintptr_t *)top - 1, caller);
 }
 
