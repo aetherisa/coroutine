@@ -13,8 +13,8 @@
  * and decide when to resume them.
  */
 
-#ifndef AETHERIS_COROUTINE_H
-#define AETHERIS_COROUTINE_H
+#ifndef AECO_COROUTINE_H
+#define AECO_COROUTINE_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -69,4 +69,4 @@ void co_delete(uintptr_t co);
  */
 bool co_is_dead(uintptr_t co);
 
-#endif // AETHERIS_COROUTINE_H
+#endif // AECO_COROUTINE_H
