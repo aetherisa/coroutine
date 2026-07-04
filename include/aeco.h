@@ -1,5 +1,5 @@
 /**
- * @file coroutine.h
+ * @file aeco.h
  * @brief minimal stackful coroutine primitives.
  *
  * argument is supported

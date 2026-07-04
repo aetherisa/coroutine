@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/mman.h>
-#include "coroutine.h"
+#include "aeco.h"
 
 #define MMAP_SIZE ((CO_STACK_SIZE) << 1)
 #define DEAD_FLAG (0x1)

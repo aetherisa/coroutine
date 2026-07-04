@@ -1,4 +1,4 @@
-# coroutine
+# aeco 
 A studying-purpose coroutine implementation based on C11/x86-64 assembly
 
 # Features
@@ -8,7 +8,7 @@ A studying-purpose coroutine implementation based on C11/x86-64 assembly
 
 # Example
 ```
-#include "coroutine.h"
+#include "aeco.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
